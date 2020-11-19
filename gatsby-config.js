@@ -5,6 +5,15 @@ module.exports = {
     author: `@mor10`,
   },
   plugins: [
+    {
+      resolve: `gatsby-source-wordpress-experimental`,
+      options: {
+        url: `http://mywpsite.local/graphql`,
+        develop: {
+          hardCacheMediaFiles: true,
+        },
+      },
+    },
     `gatsby-plugin-react-helmet`,
     {
       resolve: `gatsby-source-filesystem`,
