@@ -1,7 +1,7 @@
 {
   "name": "wordpress_and_gatsby-2331283",
   "private": true,
-  "description": "Demo starter for combining Gatsby and WordPress. Created for the LinkedIn Learning course "Building a Headless WordPress Site with Gatsby" and based on Gatsby Default Starter by @gatsbyjs",
+  "description": "Demo starter for combining Gatsby and WordPress. Created for the LinkedIn Learning course `Building a Headless WordPress Site with Gatsby` and based on Gatsby Default Starter by @gatsbyjs",
   "version": "0.1.0",
   "author": "Morten Rand-Hendriksen, based on work by Kyle Mathews <mathews.kyle@gmail.com>",
   "dependencies": {
