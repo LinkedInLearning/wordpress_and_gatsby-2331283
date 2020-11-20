@@ -7,8 +7,6 @@ import { useStaticQuery, graphql } from "gatsby"
 import UniversalLink from "../utils/UniversalLink"
 import { FlatListToHierarchical } from "../utils/FlatListToHierarchical"
 
-import style from "./mainNav.module.css"
-
 const MenuLoop = ({ menuItems }) => {
   return (
     <ul>
@@ -31,15 +29,12 @@ const MenuLoop = ({ menuItems }) => {
   )
 }
 
-const MainNav = () => {
+const FooterNav = () => {
   const wpMenu = useStaticQuery(graphql`
     {
       allWpMenuItem(
         sort: { fields: order, order: ASC }
-        filter: {
-          menu: { node: { slug: { eq: "all-pages" } } }
-          parentDatabaseId: { eq: 0 }
-        }
+        filter: { menu: { node: { slug: { eq: "all-pages" } } } }
       ) {
         nodes {
           id
@@ -53,18 +48,18 @@ const MainNav = () => {
   `)
 
   console.log("Raw data:", wpMenu.allWpMenuItem.nodes)
-  const headerMenu = FlatListToHierarchical(wpMenu.allWpMenuItem.nodes, {
+  const footerMenu = FlatListToHierarchical(wpMenu.allWpMenuItem.nodes, {
     idKey: "id",
     childrenKey: "routes",
     parentKey: "parent",
   })
-  console.log("headerMenu: ", headerMenu)
+  console.log("footerMenu: ", footerMenu)
 
   return (
-    <nav className={style.mainnav}>
-      {headerMenu.length > 0 && <MenuLoop menuItems={headerMenu}></MenuLoop>}
+    <nav style={{ textAlign: "left" }}>
+      {footerMenu.length > 0 && <MenuLoop menuItems={footerMenu}></MenuLoop>}
     </nav>
   )
 }
 
-export default MainNav
+export default FooterNav

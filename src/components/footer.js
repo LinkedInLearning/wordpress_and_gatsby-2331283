@@ -1,10 +1,12 @@
 import React from "react"
 
+import FooterNav from "./footerNav"
 import style from "./footer.module.css"
 
 const Footer = () => {
   return (
     <footer className={style.footer}>
+      <FooterNav />
       <div>
         © {new Date().getFullYear()}, Built with
         {` `}
