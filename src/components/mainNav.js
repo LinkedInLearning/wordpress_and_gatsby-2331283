@@ -7,7 +7,7 @@ import { useStaticQuery, graphql } from "gatsby"
 import UniversalLink from "../utils/UniversalLink"
 import { FlatListToHierarchical } from "../utils/FlatListToHierarchical"
 
-import style from "./MainNav.module.css"
+import style from "./mainNav.module.css"
 
 const MenuLoop = ({ menuItems }) => {
   return (
