@@ -36,10 +36,7 @@ const MainNav = () => {
     {
       allWpMenuItem(
         sort: { fields: order, order: ASC }
-        filter: {
-          menu: { node: { slug: { eq: "all-pages" } } }
-          parentDatabaseId: { eq: 0 }
-        }
+        filter: { menu: { node: { slug: { eq: "all-pages" } } } }
       ) {
         nodes {
           id
