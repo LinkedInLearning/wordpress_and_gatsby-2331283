@@ -1,44 +1,62 @@
 /**
- * Creates menu based on WordPress menu.
+ * Creates hierarchical menu based on WordPress menu.
+ * @link https://www.wpgraphql.com/docs/menus/#hierarchical-data
  */
 import React from "react"
 import { useStaticQuery, graphql } from "gatsby"
-
 import UniversalLink from "../utils/UniversalLink"
-import style from "./mainNav.module.css"
+import { FlatListToHierarchical } from "../utils/FlatListToHierarchical"
+
+import style from "./MainNav.module.css"
+
+const MenuLoop = ({ menuItems }) => {
+  return (
+    <ul>
+      {menuItems.map((menuItem, index) => {
+        return (
+          <li
+            key={index}
+            className={menuItem.routes.length > 0 ? "has-submenu" : undefined}
+          >
+            <UniversalLink to={menuItem.path} activeClassName="current-page">
+              {menuItem.title}
+            </UniversalLink>
+          </li>
+        )
+      })}
+    </ul>
+  )
+}
 
 const MainNav = () => {
   const wpMenu = useStaticQuery(graphql`
     {
       allWpMenuItem(
-        filter: {
-          menu: { node: { slug: { eq: "all-pages" } } }
-          parentDatabaseId: { eq: 0 }
-        }
+        sort: { fields: order, order: ASC }
+        filter: { menu: { node: { slug: { eq: "all-pages" } } } }
       ) {
         nodes {
+          id
           title: label
           path
+          target
+          parent: parentId
         }
       }
     }
   `)
 
-  const menuItems = wpMenu.allWpMenuItem.nodes
+  console.log("Raw data:", wpMenu.allWpMenuItem.nodes)
+  const headerMenu = FlatListToHierarchical(wpMenu.allWpMenuItem.nodes, {
+    idKey: "id",
+    childrenKey: "routes",
+    parentKey: "parent",
+  })
+  console.log("headerMenu: ", headerMenu)
 
   return (
     <nav className={style.mainnav}>
-      <ul>
-        {menuItems.map((menuItem, index) => {
-          return (
-            <li key={index}>
-              <UniversalLink to={menuItem.path} activeClassName="current-page">
-                {menuItem.title}
-              </UniversalLink>
-            </li>
-          )
-        })}
-      </ul>
+      {headerMenu.length > 0 && <MenuLoop menuItems={headerMenu}></MenuLoop>}
     </nav>
   )
 }
