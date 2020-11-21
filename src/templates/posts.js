@@ -1,7 +1,7 @@
 import React from "react"
 import { graphql, Link } from "gatsby"
 import Img from "gatsby-image"
-import Catlist from "../components/Catlist"
+import Catlist from "../components/catlist"
 
 import style from "./single.module.css"
 import Layout from "../components/layout"
