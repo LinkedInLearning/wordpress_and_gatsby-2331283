@@ -16,7 +16,7 @@ export default ({ data }) => {
         {post.featuredImage && (
           <figure className={style.featimg}>
             <Img
-              fixed={post.featuredImage.node.localFile.childImageSharp.fluid}
+              fluid={post.featuredImage.node.localFile.childImageSharp.fluid}
               alt={post.featuredImage.node.altText}
             />
           </figure>

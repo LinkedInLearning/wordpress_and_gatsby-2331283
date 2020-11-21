@@ -1,11 +1,9 @@
 .article__meta,
 .article__tax {
-  font-family: var(--highlight-font);
   font-size: 80%;
 }
 
 .article {
-  max-width: var(--content-w-regular);
   margin: 0 auto;
   padding: 0 2rem;
 }
@@ -38,6 +36,41 @@
 }
 
 .article__content {
-  max-width: var(--content-w-narrow);
   margin: 3rem auto;
+}
+
+.articlelist {
+  margin: 0 auto;
+  padding: 0 2rem;
+}
+
+.articlelist h2 {
+  margin-top: 2rem;
+  font-size: 4rem;
+  text-align: center;
+}
+
+.articlelist ul {
+  margin: 0;
+  padding: 0;
+}
+
+a {
+  color: inherit;
+}
+
+.listitem {
+  margin: 3rem 0;
+}
+
+.listitem .article__content {
+  margin-top: 1rem;
+}
+
+.listitem::after {
+  content: "";
+  display: block;
+  width: 10rem;
+  margin: 4rem auto;
+  border-bottom: 1px solid black;
 }
