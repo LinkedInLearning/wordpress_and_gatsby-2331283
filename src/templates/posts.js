@@ -1,15 +1,15 @@
 import React from "react"
 import { graphql, Link } from "gatsby"
 import Img from "gatsby-image"
+import Catlist from "../components/Catlist"
 
 import style from "./single.module.css"
 import Layout from "../components/layout"
 import SEO from "../components/seo"
-import Catlist from "../components/Catlist"
+import Pagination from "../components/pagination"
 
-const ArticleIndex = ({ data }) => {
+const ArticleIndex = ({ data, pageContext }) => {
   const posts = data.allWpPost.nodes
-
   return (
     <Layout>
       <SEO title="Articles" />
@@ -57,6 +57,7 @@ const ArticleIndex = ({ data }) => {
           </article>
         ))}
       </section>
+      <Pagination pageContext={pageContext} />
     </Layout>
   )
 }
@@ -95,8 +96,8 @@ export const pageQuery = graphql`
             altText
             localFile {
               childImageSharp {
-                fixed(height: 400, width: 400, cropFocus: ATTENTION) {
-                  ...GatsbyImageSharpFixed
+                fluid(maxWidth: 1360) {
+                  ...GatsbyImageSharpFluid
                 }
               }
             }
