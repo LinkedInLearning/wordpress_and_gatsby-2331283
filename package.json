@@ -5,6 +5,7 @@
   "version": "0.1.0",
   "author": "Morten Rand-Hendriksen, based on work by Kyle Mathews <mathews.kyle@gmail.com>",
   "dependencies": {
+    "@wordpress/block-library": "^2.26.4",
     "gatsby": "^2.26.1",
     "gatsby-awesome-pagination": "^0.3.6",
     "gatsby-image": "^2.5.0",
