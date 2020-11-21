@@ -1,10 +1,11 @@
 import React from "react"
-import { graphql } from "gatsby"
+import { graphql, Link } from "gatsby"
 import Img from "gatsby-image"
 
 import style from "./single.module.css"
 import Layout from "../components/layout"
 import SEO from "../components/seo"
+import Catlist from "../components/catlist"
 
 export default ({ data }) => {
   const post = data.thePost
@@ -20,6 +21,7 @@ export default ({ data }) => {
             />
           </figure>
         )}
+        <Catlist postObject={post} />
         <h1 className={style.article__title}>{post.title}</h1>
         <div className={style.article__meta}>
           by {post.author.node.name}. Published{" "}
@@ -29,11 +31,19 @@ export default ({ data }) => {
             year: "numeric",
           })}
         </div>
-
         <div
           className={style.article__content}
           dangerouslySetInnerHTML={{ __html: post.content }}
         />
+        <div>
+          Tagged:{" "}
+          {post.tags.nodes.map((tag, index) => [
+            index > 0 && ", ",
+            <Link key={index} to={tag.link}>
+              {tag.name}
+            </Link>,
+          ])}
+        </div>
       </article>
     </Layout>
   )
@@ -48,6 +58,18 @@ export const query = graphql`
       title
       author {
         node {
+          name
+        }
+      }
+      categories {
+        nodes {
+          link
+          name
+        }
+      }
+      tags {
+        nodes {
+          link
           name
         }
       }
