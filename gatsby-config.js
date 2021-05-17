@@ -6,7 +6,7 @@ module.exports = {
   },
   plugins: [
     {
-      resolve: `gatsby-source-wordpress-experimental`,
+      resolve: `gatsby-source-wordpress`,
       options: {
         url: `http://mywpsite.local/graphql`,
         develop: {
